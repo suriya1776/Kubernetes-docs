@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: resource-limits-pod
+spec:
+  containers:
+  - name: nginx-container
+    image: nginx:latest
+    resources:
+      limits:
+        memory: "256Mi"  # Maximum memory usage allowed
+        cpu: "0.5"       # Maximum CPU usage allowed (0.5 cores)
+      requests:
+        memory: "128Mi"  # Initial memory request
+        cpu: "0.25"      # Initial CPU request
