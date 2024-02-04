@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: order-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: order-service
+  template:
+    metadata:
+      labels:
+        app: order-service
+    spec:
+      containers:
+        - name: order-service
+          image: suriya1776/startruck:orderservice_v1.1
+          volumeMounts:
+            - name: config-volume
+              mountPath: /path/to/your/config/directory
+      volumes:
+        - name: config-volume
+          configMap:
+            name: order-service-config

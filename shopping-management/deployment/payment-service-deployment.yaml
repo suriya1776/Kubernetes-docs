@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: payment-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: payment-service
+  template:
+    metadata:
+      labels:
+        app: payment-service
+    spec:
+      containers:
+        - name: payment-service
+          image: suriya1776/startruck:paymentservice_v1.1
+          volumeMounts:
+            - name: config-volume
+              mountPath: /path/to/your/config/directory
+      volumes:
+        - name: config-volume
+          configMap:
+            name: payment-service-config
