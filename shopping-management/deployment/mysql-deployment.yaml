@@ -19,6 +19,6 @@ spec:
             - name: MYSQL_ROOT_PASSWORD
               value: Admin@123
             - name: MYSQL_DATABASE
-              value: orderdb
+              value: orderdb,paymentdb,productdb
           ports:
             - containerPort: 3306
