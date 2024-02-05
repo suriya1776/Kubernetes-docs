@@ -3,6 +3,7 @@
 kubectl create -f ../configmap/order-service-config.yaml
 kubectl create -f ../configmap/payment-service-config.yaml
 kubectl create -f ../configmap/product-service-config.yaml
+kubectl create -f ../configmap/mysql-config.yaml
 
 kubectl create -f ../services/mysql-service.yaml
 kubectl create -f ../services/order-service-service.yaml
