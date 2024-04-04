@@ -14,10 +14,10 @@ spec:
     spec:
       containers:
         - name: payment-service
-          image: suriya1776/startruck:paymentservice_v1.1
+          image: suriya1776/startruck:paymentservice_v1.2
           volumeMounts:
             - name: config-volume
-              mountPath: /path/to/your/config/directory
+              mountPath: /app/config
       volumes:
         - name: config-volume
           configMap:
