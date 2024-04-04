@@ -16,5 +16,5 @@ kubectl create -f ../deployment/order-service-deployment.yaml
 kubectl create -f ../deployment/payment-service-deployment.yaml
 kubectl create -f ../deployment/product-service-deployment.yaml
 kubectl create -f ../deployment/mysql-deployment.yaml
-kubectl create -f ../services/shoppingapp-deployment.yaml
+kubectl create -f ../deployment/shoppingapp-deployment.yaml
 

@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: shoppingapp-container
-          image: your-shoppingapp-image:tag
+          image: suriya1776/startruck:shoppingapp_v1.1
           ports:
             - containerPort: 8080
           env:
