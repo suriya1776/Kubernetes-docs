@@ -80,11 +80,10 @@ sudo apt install -y curl gnupg2 software-properties-common apt-transport-https c
 ```
 - Enable the Docker repository
 
-> sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg  >--dearmour -o /etc/apt/trusted.gpg.d/docker.gpg
->
-
-
-> sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
+```sh
+sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmour -o /etc/apt/trusted.gpg.d/docker.gpg
+sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
+```
 
 - Update the package list and install containerd
 ```sh
@@ -93,9 +92,10 @@ sudo apt install -y containerd.io
 ```
 - Configure containerd to start using systemd as cgroup
 
-> containerd config default | sudo tee /etc/containerd/config.toml  >/dev/null 2>&1
-
-> sudo sed -i 's/SystemdCgroup \= false/SystemdCgroup \= true/g' /etc/containerd/config.toml
+```sh
+containerd config default | sudo tee /etc/containerd/config.toml  >/dev/null 2>&1
+sudo sed -i 's/SystemdCgroup \= false/SystemdCgroup \= true/g' /etc/containerd/config.toml
+```
 
 - Restart and enable the containerd service
 ```sh
