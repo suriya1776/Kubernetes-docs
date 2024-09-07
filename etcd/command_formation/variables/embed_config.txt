@@ -1,0 +1,32 @@
+Name: default
+Dir: 
+WalDir: 
+SnapshotCount: 10000
+SnapshotCatchUpEntries: 5000
+MaxSnapFiles: 5
+MaxWalFiles: 5
+TickMs: 100
+ElectionMs: 1000
+InitialElectionTickAdvance: true
+BackendBatchInterval: 0s
+BackendBatchLimit: 0
+BackendFreelistType: 
+QuotaBackendBytes: 0
+MaxTxnOps: 128
+MaxRequestBytes: 1572864
+MaxConcurrentStreams: 4294967295
+ListenPeerUrls: [{http   localhost:2380   false false   }]
+ListenClientUrls: [{http   localhost:2379   false false   }]
+ListenClientHttpUrls: []
+AdvertisePeerUrls: [{http   localhost:2380   false false   }]
+AdvertiseClientUrls: [{http   localhost:2379   false false   }]
+ClientTLSInfo: cert = , key = , client-cert=, client-key=, trusted-ca = , client-cert-auth = false, crl-file = 
+ClientAutoTLS: false
+PeerTLSInfo: cert = , key = , client-cert=, client-key=, trusted-ca = , client-cert-auth = false, crl-file = 
+PeerAutoTLS: false
+ExperimentalSetMemberLocalAddr: false
+SelfSignedCertValidity: 0
+CipherSuites: []
+TlsMinVersion: 
+TlsMaxVersion: 
+InitialCluster:  default=http://localhost:2380

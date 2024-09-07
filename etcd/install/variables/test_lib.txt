@@ -1,0 +1,9 @@
+ROOT_MODULE="go.etcd.io/etcd"
+ETCD_ROOT_DIR="D:\CodeSpace\EclipseWS\etcd"
+GOTOOLCHAIN=go1.22.6
+VERSION_SYMBOL=go.etcd.io/etcd/api/v3/version.GitSHA
+
+GO_LDFLAGS = -X=go.etcd.io/etcd/api/v3/version.GitSHA=c0291f881
+GO_BUILD_ENV = CGO_ENABLED=0
+
+GOFAIL_VERSION=v0.2.0

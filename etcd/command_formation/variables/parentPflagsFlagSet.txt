@@ -1,0 +1,16 @@
+type FlagSet struct {
+	
+	Usage func()
+    -- Usage defaultUsage()
+	name          string
+
+    -- name : etcd
+	parsed        bool
+	actual        map[string]*Flag
+	formal        map[string]*Flag
+	args          []string // arguments after flags
+	errorHandling ErrorHandling
+    -- errorHandling: 1
+	output        io.Writer         // nil means stderr; use Output() accessor
+	undef         map[string]string // flags which didn't exist at the time of Set
+}

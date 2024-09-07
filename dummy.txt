@@ -1,0 +1,189 @@
+type Command struct {
+
+	Use string
+
+	Aliases []string
+
+	SuggestFor []string
+
+	Short string
+
+	GroupID string
+
+	Long string
+
+
+	Example string
+
+
+	ValidArgs []string
+
+	ValidArgsFunction func(cmd *Command, args []string, toComplete string) ([]string, ShellCompDirective)
+
+	Args PositionalArgs
+
+	
+	ArgAliases []string
+
+	BashCompletionFunction string
+
+	Deprecated string
+
+
+	Annotations map[string]string
+
+
+	Version string
+
+	PersistentPreRun func(cmd *Command, args []string)
+
+	PersistentPreRunE func(cmd *Command, args []string) error
+
+	PreRun func(cmd *Command, args []string)
+
+	PreRunE func(cmd *Command, args []string) error
+	
+	Run func(cmd *Command, args []string)
+
+	RunE func(cmd *Command, args []string) error
+
+	PostRun func(cmd *Command, args []string)
+
+	PostRunE func(cmd *Command, args []string) error
+
+	PersistentPostRun func(cmd *Command, args []string)
+
+	PersistentPostRunE func(cmd *Command, args []string) error
+
+	commandgroups []*Group
+
+	args []string
+
+	flagErrorBuf *bytes.Buffer
+	// flags is full set of flags.
+	flags *flag.FlagSet
+	// pflags contains persistent flags.
+	pflags *flag.FlagSet
+	// lflags contains local flags.
+	// This field does not represent internal state, it's used as a cache to optimise LocalFlags function call
+	lflags *flag.FlagSet
+	// iflags contains inherited flags.
+	// This field does not represent internal state, it's used as a cache to optimise InheritedFlags function call
+	iflags *flag.FlagSet
+	// parentsPflags is all persistent flags of cmd's parents.
+	parentsPflags *flag.FlagSet
+	// globNormFunc is the global normalization function
+	// that we can use on every pflag set and children commands
+	globNormFunc func(f *flag.FlagSet, name string) flag.NormalizedName
+
+	// usageFunc is usage func defined by user.
+	usageFunc func(*Command) error
+	// usageTemplate is usage template defined by user.
+	usageTemplate string
+	// flagErrorFunc is func defined by user and it's called when the parsing of
+	// flags returns an error.
+	flagErrorFunc func(*Command, error) error
+	// helpTemplate is help template defined by user.
+	helpTemplate string
+	// helpFunc is help func defined by user.
+	helpFunc func(*Command, []string)
+	// helpCommand is command with usage 'help'. If it's not defined by user,
+	// cobra uses default help command.
+	helpCommand *Command
+	// helpCommandGroupID is the group id for the helpCommand
+	helpCommandGroupID string
+
+	// completionCommandGroupID is the group id for the completion command
+	completionCommandGroupID string
+
+	// versionTemplate is the version template defined by user.
+	versionTemplate string
+
+	// errPrefix is the error message prefix defined by user.
+	errPrefix string
+
+	// inReader is a reader defined by the user that replaces stdin
+	inReader io.Reader
+	// outWriter is a writer defined by the user that replaces stdout
+	outWriter io.Writer
+	// errWriter is a writer defined by the user that replaces stderr
+	errWriter io.Writer
+
+	// FParseErrWhitelist flag parse errors to be ignored
+	FParseErrWhitelist FParseErrWhitelist
+
+	// CompletionOptions is a set of options to control the handling of shell completion
+	CompletionOptions CompletionOptions
+
+	// commandsAreSorted defines, if command slice are sorted or not.
+	commandsAreSorted bool
+	// commandCalledAs is the name or alias value used to call this command.
+	commandCalledAs struct {
+		name   string
+		called bool
+	}
+
+	ctx context.Context
+
+	
+	commands []*Command
+	
+	parent *Command
+
+	commandsMaxUseLen         int
+	commandsMaxCommandPathLen int
+	commandsMaxNameLen        int
+
+	
+	TraverseChildren bool
+
+
+	Hidden bool
+
+	SilenceErrors bool
+
+	SilenceUsage bool
+
+
+	DisableFlagParsing bool
+
+
+	DisableAutoGenTag bool
+
+
+	DisableFlagsInUseLine bool
+
+	DisableSuggestions bool
+
+	
+	SuggestionsMinimumDistance int
+}
+
+
+
+type Command struct {
+        Use:        "etcd",
+		Short:      "etcd server",
+		SuggestFor: []string{"etcd"}
+}
+
+
+type Command struct{
+		Use:   "gateway <subcommand>",
+		Short: "gateway related command",
+	}
+
+
+
+type Command struct{
+		Use:   "start",
+		Short: "start the gateway",
+		Run:   startGateway,
+	}
+
+
+
+flags *flag.FlagSet
+
+c.flags = flag.NewFlagSet(c.displayName(), flag.ContinueOnError)
+//       = flag.NewFlagSet(, flag.ContinueOnError)

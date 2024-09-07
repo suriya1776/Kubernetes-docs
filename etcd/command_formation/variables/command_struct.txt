@@ -1,0 +1,368 @@
+type Command struct {
+
+	Use string
+
+	Aliases []string
+
+	SuggestFor []string
+
+	Short string
+
+	// The group id under which this subcommand is grouped in the 'help' output of its parent.
+	GroupID string
+
+	// Long is the long message shown in the 'help <this-command>' output.
+	Long string
+
+
+	Example string
+
+
+	ValidArgs []string
+
+	ValidArgsFunction func(cmd *Command, args []string, toComplete string) ([]string, ShellCompDirective)
+
+	// Expected arguments
+	Args PositionalArgs
+
+	
+	ArgAliases []string
+
+	BashCompletionFunction string
+
+	// Deprecated defines, if this command is deprecated and should print this string when used.
+	Deprecated string
+
+
+	Annotations map[string]string
+
+
+	Version string
+
+	PersistentPreRun func(cmd *Command, args []string)
+
+	PersistentPreRunE func(cmd *Command, args []string) error
+
+	PreRun func(cmd *Command, args []string)
+
+	PreRunE func(cmd *Command, args []string) error
+	
+	Run func(cmd *Command, args []string)
+
+	RunE func(cmd *Command, args []string) error
+
+	PostRun func(cmd *Command, args []string)
+
+	PostRunE func(cmd *Command, args []string) error
+
+	PersistentPostRun func(cmd *Command, args []string)
+
+	PersistentPostRunE func(cmd *Command, args []string) error
+
+	// groups for subcommands
+	commandgroups []*Group
+
+	// args is actual args parsed from flags.
+	args []string
+	// flagErrorBuf contains all error messages from pflag.
+	flagErrorBuf *bytes.Buffer
+	// flags is full set of flags.
+	flags *flag.FlagSet
+	// pflags contains persistent flags.
+	pflags *flag.FlagSet
+	// lflags contains local flags.
+	// This field does not represent internal state, it's used as a cache to optimise LocalFlags function call
+	lflags *flag.FlagSet
+	// iflags contains inherited flags.
+	// This field does not represent internal state, it's used as a cache to optimise InheritedFlags function call
+	iflags *flag.FlagSet
+	// parentsPflags is all persistent flags of cmd's parents.
+	parentsPflags *flag.FlagSet
+	// globNormFunc is the global normalization function
+	// that we can use on every pflag set and children commands
+	globNormFunc func(f *flag.FlagSet, name string) flag.NormalizedName
+
+	// usageFunc is usage func defined by user.
+	usageFunc func(*Command) error
+	// usageTemplate is usage template defined by user.
+	usageTemplate string
+	// flagErrorFunc is func defined by user and it's called when the parsing of
+	// flags returns an error.
+	flagErrorFunc func(*Command, error) error
+	// helpTemplate is help template defined by user.
+	helpTemplate string
+	// helpFunc is help func defined by user.
+	helpFunc func(*Command, []string)
+	// helpCommand is command with usage 'help'. If it's not defined by user,
+	// cobra uses default help command.
+	helpCommand *Command
+	// helpCommandGroupID is the group id for the helpCommand
+	helpCommandGroupID string
+
+	// completionCommandGroupID is the group id for the completion command
+	completionCommandGroupID string
+
+	// versionTemplate is the version template defined by user.
+	versionTemplate string
+
+	// errPrefix is the error message prefix defined by user.
+	errPrefix string
+
+	// inReader is a reader defined by the user that replaces stdin
+	inReader io.Reader
+	// outWriter is a writer defined by the user that replaces stdout
+	outWriter io.Writer
+	// errWriter is a writer defined by the user that replaces stderr
+	errWriter io.Writer
+
+	// FParseErrWhitelist flag parse errors to be ignored
+	FParseErrWhitelist FParseErrWhitelist
+
+	// CompletionOptions is a set of options to control the handling of shell completion
+	CompletionOptions CompletionOptions
+
+	// commandsAreSorted defines, if command slice are sorted or not.
+	commandsAreSorted bool
+	// commandCalledAs is the name or alias value used to call this command.
+	commandCalledAs struct {
+		name   string
+		called bool
+	}
+
+	ctx context.Context
+
+	
+	commands []*Command
+	
+	parent *Command
+
+	commandsMaxUseLen         int
+	commandsMaxCommandPathLen int
+	commandsMaxNameLen        int
+
+	
+	TraverseChildren bool
+
+
+	Hidden bool
+
+	SilenceErrors bool
+
+	SilenceUsage bool
+
+
+	DisableFlagParsing bool
+
+
+	DisableAutoGenTag bool
+
+
+	DisableFlagsInUseLine bool
+
+	DisableSuggestions bool
+
+	
+	SuggestionsMinimumDistance int
+}
+
+
+// There instance od cobra command is created
+
+var (
+	rootCmd = &cobra.Command{
+		Use:        "etcd",
+		Short:      "etcd server",
+		SuggestFor: []string{"etcd"},
+	}
+)
+
+lpc := &cobra.Command{
+		Use:   "gateway <subcommand>",
+		Short: "gateway related command",
+	}
+
+
+cmd := cobra.Command{
+		Use:   "start",
+		Short: "start the gateway",
+		Run:   startGateway,
+	}
+
+
+// After calling Flags command from cmd,
+
+type Command Struct{
+
+    	Use:   "start",
+		Short: "start the gateway",
+		Run:   startGateway,
+
+        flags *flag.FlagSet
+        // name: listen-addr
+        // errorHandling: 1
+        // Usage defaultUsage()
+        //output io.Writer
+
+
+        flagErrorBuf *bytes.Buffer
+        //flagErrorBuf new(bytes.Buffer)
+        // io.Writer
+
+
+
+
+
+}
+
+
+type FlagSet struct {
+	Usage func()
+
+	name          string
+	parsed        bool
+	actual        map[string]*Flag
+	formal        map[string]*Flag
+	args          []string // arguments after flags
+	errorHandling ErrorHandling
+	output        io.Writer         // nil means stderr; use Output() accessor
+	undef         map[string]string // flags which didn't exist at the time of Set
+}
+
+
+//In AddCommand
+
+type Command Struct{
+
+    	Use:   "start",
+		Short: "start the gateway",
+		Run:   startGateway,
+
+        flags *flag.FlagSet
+        // name: listen-addr
+        // errorHandling: 1
+        // Usage defaultUsage()
+        //output io.Writer
+
+
+        flagErrorBuf *bytes.Buffer
+        //flagErrorBuf new(bytes.Buffer)
+        // io.Writer
+
+        parent *Command
+        //type Command Struct {
+        Use:   "gateway <subcommand>",
+		Short: "gateway related command",
+        }
+
+
+
+
+
+}
+
+
+
+//Struct for root command
+
+
+type Command Struct{
+
+    	Use:   "start",
+		Short: "start the gateway",
+		Run:   startGateway,
+
+        flags *flag.FlagSet
+        // name: listen-addr
+        // errorHandling: 1
+        // Usage defaultUsage()
+        //output io.Writer
+
+
+        flagErrorBuf *bytes.Buffer
+        //flagErrorBuf new(bytes.Buffer)
+        // io.Writer
+
+        parent *Command
+        //type Command Struct {
+        Use:   "gateway <subcommand>",
+		Short: "gateway related command",
+        }
+
+		commands : subcommand
+
+		// {
+			same Command struct
+		}
+   
+
+      commandAreSorted: false
+    
+	 commandsMaxNameLen: <length>
+
+	 commandsMaxCommandPathLen: <length>
+
+	 commandsMaxUseLen: <length>
+
+
+
+
+}
+
+
+
+// for etcd command
+
+--listen-client-urls=http://localhost:2379 --advertise-client-urls=http://localhost:2379
+
+type Command struct{
+
+	Use: etcd
+    Aliases: []
+	SuggestFor: [etcd]
+	Short: etcd server
+	GroupID: 
+	Long:
+	Example: 
+
+
+	ValidArgs: []
+
+    ValidArgsFunction: <nil>    
+
+	BashCompletionFunction: 
+
+
+	Args: <nil>
+
+	Deprecated: 
+
+	Annotations: map[]
+
+	Version: 
+
+	PersistentPreRun: <nil>
+
+	PersistentPreRunE: <nil>
+
+
+	PreRun: <nil>
+
+	PreRunE: <nil>
+
+    Run: <nil>
+
+	RunE: <nil>
+
+	PostRun: <nil>
+
+	PostRunE: <nil>
+
+	PersistentPostRun: <nil>
+
+	PersistentPostRunE: <nil>
+
+
+
+
+
+}
