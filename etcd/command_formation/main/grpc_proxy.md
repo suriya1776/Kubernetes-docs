@@ -5,6 +5,7 @@ The same as the gateway , the subcommand is added to the root directory
 The flags that are added to the subcommand are
 
 #### Flags Added to the start Subcommand:
+>
 --listen-addr: Specifies the address on which the gRPC proxy will listen.
 --discovery-srv: The domain name to query for SRV records describing etcd cluster endpoints.
 --discovery-srv-name: The service name to query when using DNS discovery.
@@ -29,6 +30,7 @@ The flags that are added to the subcommand are
 
 
 #### Client TLS Flags (for connecting to the server):
+>
 --cert: TLS certificate file for secure connections to etcd servers.
 --key: TLS key file for secure connections to etcd servers.
 --cacert: CA bundle for verifying TLS-enabled secure etcd servers.
@@ -36,6 +38,7 @@ The flags that are added to the subcommand are
 
 
 #### Client TLS Flags (for connecting to the proxy):
+>
 --cert-file: TLS certificate file for secure connections to the proxy.
 --key-file: TLS key file for secure connections to the proxy.
 --trusted-ca-file: CA bundle for verifying TLS-enabled secure proxy.
